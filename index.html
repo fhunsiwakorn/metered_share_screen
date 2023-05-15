@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <title>WebRTC Screen Sharing Demo | Metered Video</title>
     <!-- Google Fonts -->
     <link
@@ -83,6 +84,17 @@
         </div>
       </div>
     </div>
+    <div id="metered-frame"></div>
+    <script src="https://cdn.metered.ca/sdk/frame/1.4.2/sdk-frame.min.js"></script>
+    <script>
+      var frame = new MeteredFrame();
+      frame.init(
+        {
+          roomURL: "fhunsiwakorn.metered.live/ironman",
+        },
+        document.getElementById("metered-frame")
+      );
+    </script>
 
     <script>
       const meeting = new Metered.Meeting();
