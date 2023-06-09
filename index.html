@@ -64,22 +64,47 @@
             </button>
           </div>
         </div>
-        <div class="row">
-          <div class="column">
-            <!-- <h3>Remote Video</h3> -->
-            <div id="remote-video-container"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="column">
-            <!-- <h3>Local Video</h3> -->
-            <video
-              src=""
-              muted
-              autoplay
-              id="local-video"
-              style="width: 100%"
-            ></video>
+        <div>
+          <div id="wrapper">
+            <div id="container">
+              <div id="open_fullscreen">
+                <button
+                  onclick="var el = document.getElementById('content_element'); el.webkitRequestFullscreen();"
+                >
+                  Go Full Screen!
+                </button>
+              </div>
+              <div id="titlebar"></div>
+              <div id="content_element">
+                <button
+                  id="button_close"
+                  onclick="closeFullscreen()"
+                  class="button-outline"
+                  style="display: none"
+                >
+                  Close
+                </button>
+
+                <div class="row">
+                  <div class="column">
+                    <!-- <h3>Remote Video</h3> -->
+                    <div id="remote-video-container"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="column">
+                    <!-- <h3>Local Video</h3> -->
+                    <video
+                      src=""
+                      muted
+                      autoplay
+                      id="local-video"
+                      style="width: 100%"
+                    ></video>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -170,6 +195,40 @@
       meeting.on("remoteTrackStopped", async (trackItem) => {
         document.getElementById(trackItem.streamId).remove();
       });
+
+      function openFullscreen() {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          /* Firefox */
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+          /* Chrome, Safari and Opera */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          /* IE/Edge */
+          elem.msRequestFullscreen();
+        }
+        //document.getElementById("open_fullscreen").style.display = "none";
+        document.getElementById("button_close").style.display = "block";
+      }
+
+      function closeFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          /* Firefox */
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          /* Chrome, Safari and Opera */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          /* IE/Edge */
+          document.msExitFullscreen();
+        }
+        //document.getElementById("open_fullscreen").style.display = "";
+        // document.getElementById("content_element").style.display = "none";
+      }
     </script>
   </body>
 </html>
