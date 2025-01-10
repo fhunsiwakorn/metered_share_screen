@@ -41,6 +41,13 @@
             z-index: 9999;
         }
     </style>
+     <script>
+        // เพิ่ม Event Listener สำหรับ contextmenu
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // ป้องกันการแสดงเมนูคลิกขวา
+           // alert("ห้ามคลิกขวาบนหน้านี้!"); // แสดงข้อความเตือน
+        });
+    </script>
   </head>
   <body>
     <div class="" style="padding:10px">
